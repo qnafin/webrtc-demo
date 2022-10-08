@@ -1,19 +1,13 @@
 const restartConfig = {
   iceServers: [
+    {urls: 'stun:217.25.90.104'},
     {
-      urls: "stun:openrelay.metered.ca:80",
-    },
-    {
-        url: 'turn:relay.backups.cz',
-        credential: 'webrtc',
-        username: 'webrtc'
-    },
-    {
-        url: 'turn:relay.backups.cz?transport=tcp',
-        credential: 'webrtc',
-        username: 'webrtc'
+      urls: 'turn:217.25.90.104:3478',
+      credential: 'qnafin',
+      username: 'qnafin',
     },
   ],
+  iceCandidatePoolSize: 10,
 };
 
 let peerConnection = new RTCPeerConnection();
