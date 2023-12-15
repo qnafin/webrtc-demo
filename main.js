@@ -37,7 +37,13 @@ let init = async () => {
   };
 
   peerConnection.onicecandidateerror = async (event) => {
-    iceCandidateError.push(event);
+    iceCandidateError.push({
+      address: event.address,
+      errorCode: event.errorCode,
+      errorText: event.errorCode,
+      port: event.port,
+      url: event.url,
+    });
     document.getElementById("icecandidate-error").value =
       JSON.stringify(iceCandidateError);
   };
