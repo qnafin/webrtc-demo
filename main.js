@@ -1,10 +1,10 @@
 const restartConfig = {
   iceServers: [
-    {urls: 'stun:217.25.90.104'},
+    { urls: "stun:217.25.90.104" },
     {
-      urls: 'turn:217.25.90.104:3478',
-      credential: 'qnafin',
-      username: 'qnafin',
+      urls: "turn:217.25.90.104:3478",
+      credential: "qnafin",
+      username: "qnafin",
     },
   ],
   iceCandidatePoolSize: 10,
@@ -15,6 +15,7 @@ let peerConnection = new RTCPeerConnection();
 peerConnection.setConfiguration(restartConfig);
 let localStream;
 let remoteStream;
+let iceCandidateError = [];
 
 let init = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({
@@ -33,6 +34,12 @@ let init = async () => {
     event.streams[0].getTracks().forEach((track) => {
       remoteStream.addTrack(track);
     });
+  };
+
+  peerConnection.onicecandidateerror = async (event) => {
+    iceCandidateError.push(event);
+    document.getElementById("icecandidate-error").value =
+      JSON.stringify(iceCandidateError);
   };
 };
 
