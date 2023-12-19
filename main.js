@@ -1,11 +1,11 @@
 const restartConfig = {
   iceServers: [
-    { urls: "stun:217.25.90.104" },
+    { urls: ["stun:qnafin.ru:443"] },
     {
-      urls: "turn:217.25.90.104:3478",
+      urls: "turn:qnafin.ru:443",
       credential: "qnafin",
       username: "qnafin",
-    },
+    }
   ],
   iceCandidatePoolSize: 10,
 };
